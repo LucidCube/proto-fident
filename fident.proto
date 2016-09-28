@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package fident;
+
+message ServiceRegistrationResult {
+  string identityID = 1;
+  string serviceKey = 2;
+}
+
+message ServiceRegistrationPayload {
+  string serviceName = 1;
+  string serviceVendor = 2;
+  string supportEmail = 3;
+}
+
+message AuthResult {
+  string token = 1;
+}
+
+message AuthChallengeResult {
+  string challenge = 1;
+}
+
+message AuthChallengePayload {
+  string username = 1;
+}
+
+message PerformAuthPayload {
+  string username = 1;
+  string challengeResponse = 2;
+}
+
+service RegistrationService {
+  rpc createServiceAccount(ServiceRegistrationPayload) returns (ServiceRegistrationResult) {};
+  rpc getAuthenticationChallenge(AuthChallengePayload) returns (AuthChallengeResult) {};
+  rpc performAuthentication(PerformAuthPayload) returns (AuthResult) {};
+}
