@@ -30,7 +30,7 @@ message PerformAuthPayload {
   string challengeResponse = 2;
 }
 
-service RegistrationService {
+service Auth {
   rpc createServiceAccount(ServiceRegistrationPayload) returns (ServiceRegistrationResult) {};
   rpc getAuthenticationChallenge(AuthChallengePayload) returns (AuthChallengeResult) {};
   rpc performAuthentication(PerformAuthPayload) returns (AuthResult) {};
