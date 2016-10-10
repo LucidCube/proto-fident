@@ -5,6 +5,7 @@ package fident;
 message ServiceRegistrationResult {
   string identityID = 1;
   string serviceKey = 2;
+  string keyHandle = 3;
 }
 
 message ServiceRegistrationPayload {
