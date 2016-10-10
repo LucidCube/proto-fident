@@ -35,6 +35,7 @@ message PerformAuthPayload {
 message AuthKeyRequestPayload {
   string username = 1;
   string password = 2;
+  string usageDescription = 3;
 }
 
 message AuthKeyResult {
