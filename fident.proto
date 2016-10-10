@@ -32,8 +32,21 @@ message PerformAuthPayload {
   string challengeResponse = 3;
 }
 
+message AuthKeyRequestPayload {
+  string username = 1;
+  string password = 2;
+}
+
+message AuthKeyResult {
+  string username = 1;
+  string identityID = 2;
+  string privateKey = 3;
+  string keyHandle = 4;
+}
+
 service Auth {
   rpc createServiceAccount(ServiceRegistrationPayload) returns (ServiceRegistrationResult) {};
   rpc getAuthenticationChallenge(AuthChallengePayload) returns (AuthChallengeResult) {};
+  rpc getNewAuthenticationKey(AuthKeyRequestPayload) returns (AuthKeyResult) {};
   rpc performAuthentication(PerformAuthPayload) returns (AuthResult) {};
 }
