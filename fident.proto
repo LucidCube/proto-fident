@@ -28,7 +28,8 @@ message AuthChallengePayload {
 
 message PerformAuthPayload {
   string username = 1;
-  string challengeResponse = 2;
+  string keyHandle = 2;
+  string challengeResponse = 3;
 }
 
 service Auth {
