@@ -22,12 +22,12 @@ message AuthChallengeResult {
 }
 
 message AuthChallengePayload {
-  string username = 1;
+  string identity_id = 1;
   string project_id = 2;
 }
 
 message PerformAuthPayload {
-  string username = 1;
+  string identity_id = 1;
   string key_handle = 2;
   string project_id = 3;
   string challenge_response = 4;
