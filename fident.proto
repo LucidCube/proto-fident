@@ -5,7 +5,6 @@ package fident;
 message ServiceRegistrationResult {
   string identity_id = 1;
   string service_key = 2;
-  string key_handle = 3;
 }
 
 message ServiceRegistrationPayload {
@@ -24,12 +23,14 @@ message AuthChallengeResult {
 
 message AuthChallengePayload {
   string username = 1;
+  string project_id = 2;
 }
 
 message PerformAuthPayload {
   string username = 1;
   string key_handle = 2;
-  string challenge_response = 3;
+  string project_id = 3;
+  string challenge_response = 4;
 }
 
 message AuthKeyRequestPayload {
