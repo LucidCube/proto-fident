@@ -2,53 +2,68 @@ syntax = "proto3";
 
 package fident;
 
-message ServiceRegistrationResult {
+service Auth {
+  // Pre-authentication methods
+  rpc GetAuthenticationChallenge(AuthChallengeRequest) returns (AuthChallengeResponse) {};
+  rpc PerformAuthentication(PerformAuthRequest) returns (AuthResponse) {};
+
+  // Account generation / management
+  rpc GetNewAuthenticationKey(AuthKeyRequest) returns (AuthKeyResponse) {};
+  rpc CreateServiceAccount(ServiceRegistrationRequest) returns (ServiceRegistrationResponse) {};
+
+  // Identity queries
+  rpc GetLastLoginTimestamps(LoginTimestampRequest) returns (LoginTimestampResponse) {};
+}
+
+message ServiceRegistrationResponse {
   string identity_id = 1;
   string service_key = 2;
 }
 
-message ServiceRegistrationPayload {
+message ServiceRegistrationRequest {
   string service_name = 1;
   string service_vendor = 2;
   string support_email = 3;
 }
 
-message AuthResult {
+message AuthResponse {
   string token = 1;
 }
 
-message AuthChallengeResult {
+message AuthChallengeResponse {
   string challenge = 1;
 }
 
-message AuthChallengePayload {
+message AuthChallengeRequest {
   string identity_id = 1;
   string project_id = 2;
 }
 
-message PerformAuthPayload {
+message PerformAuthRequest {
   string identity_id = 1;
   string key_handle = 2;
   string project_id = 3;
   string challenge_response = 4;
 }
 
-message AuthKeyRequestPayload {
+message AuthKeyRequest {
   string username = 1;
   string password = 2;
   string usage_description = 3;
 }
 
-message AuthKeyResult {
+message AuthKeyResponse {
   string username = 1;
   string identity_id = 2;
   string private_key = 3;
   string key_handle = 4;
 }
 
-service Auth {
-  rpc CreateServiceAccount(ServiceRegistrationPayload) returns (ServiceRegistrationResult) {};
-  rpc GetAuthenticationChallenge(AuthChallengePayload) returns (AuthChallengeResult) {};
-  rpc GetNewAuthenticationKey(AuthKeyRequestPayload) returns (AuthKeyResult) {};
-  rpc PerformAuthentication(PerformAuthPayload) returns (AuthResult) {};
+message LoginTimestampResponse {
+  map<string, int64> results = 1;
 }
+
+message LoginTimestampRequest {
+  repeated string identity_id = 1;
+}
+
