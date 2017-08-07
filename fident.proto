@@ -13,6 +13,7 @@ service Auth {
 
   // Identity queries
   rpc GetLastLoginTimestamps(LoginTimestampRequest) returns (LoginTimestampResponse) {};
+  rpc GetAccountDetails(AccountDetailRequest) returns (AccountDetailResponse) {};
 }
 
 message ServiceRegistrationResponse {
@@ -67,3 +68,24 @@ message LoginTimestampRequest {
   repeated string identity_id = 1;
 }
 
+message AccountAttribute{ 
+  string key = 1;
+  string value = 2;
+}
+
+message AccountDetail {
+  string identity_id = 1;
+  string username = 2;
+  string type = 3;
+  repeated AccountAttribute attributes = 4;
+  string verified = 5;
+  string key_handle = 6;
+}
+
+message AccountDetailResponse {
+  repeated AccountDetail results = 1;
+}
+
+message AccountDetailRequest {
+  repeated string identity_id = 1;
+}
