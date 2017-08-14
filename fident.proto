@@ -18,8 +18,8 @@ service Auth {
 
   // Management API permission management
   rpc GetManagementPermissionsForIdentityIDs(GetManagementPermissionsRequest) returns (ManagementPermissionsResponse) {};
-  rpc AddManagementPermissionToIdentityIDs(AddManagementPermissionRequest) returns (AddManagementPermissionRequest) {};
-  rpc RemoveManagementPermissionFromIdentityIDs(RemoveManagementPermissionRequest) returns (IdentityIDsResponse) {};
+  rpc AddManagementPermissionToIdentityIDs(AddManagementPermissionRequest) returns (AddManagementPermissionReponse) {};
+  rpc RemoveManagementPermissionFromIdentityIDs(RemoveManagementPermissionRequest) returns (RemoveManagementPermissionReponse) {};
 }
 
 message ServiceRegistrationResponse {
