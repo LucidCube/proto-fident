@@ -15,6 +15,11 @@ service Auth {
   rpc GetLastLoginTimestamps(LoginTimestampRequest) returns (LoginTimestampResponse) {};
   rpc GetAccountDetails(AccountDetailRequest) returns (AccountDetailResponse) {};
   rpc GetAllIdentityIDs(IdentityIDsRequest) returns (IdentityIDsResponse) {};
+
+  // Management API permission management
+  rpc GetManagementPermissionsForIdentityIDs(GetManagementPermissionsRequest) returns (ManagementPermissionsResponse) {};
+  rpc AddManagementPermissionToIdentityIDs(AddManagementPermissionRequest) returns (AddManagementPermissionRequest) {};
+  rpc RemoveManagementPermissionFromIdentityIDs(RemoveManagementPermissionRequest) returns (IdentityIDsResponse) {};
 }
 
 message ServiceRegistrationResponse {
@@ -75,7 +80,7 @@ message IdentityIDsResponse {
 
 message IdentityIDsRequest {}
 
-message AccountAttribute{ 
+message AccountAttribute{
   string key = 1;
   string value = 2;
 }
@@ -93,4 +98,31 @@ message AccountDetailResponse {
 
 message AccountDetailRequest {
   repeated string identity_id = 1;
+}
+
+message GetManagementPermissionsRequest {
+  repeated string identity_id = 1;
+}
+
+message ManagementPermissionResponse {
+  string identity_id = 1;
+  repeated string permissions = 2;
+}
+
+message ManagementPermissionsResponse {
+  repeated ManagementPermissionResponse results = 1;
+}
+
+message AddManagementPermissionReponse {}
+
+message AddManagementPermissionRequest {
+  repeated string identity_id = 1;
+  string permission = 2;
+}
+
+message RemoveManagementPermissionReponse {}
+
+message RemoveManagementPermissionRequest {
+  repeated string identity_id = 1;
+  string permission = 2;
 }
