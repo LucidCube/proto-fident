@@ -128,10 +128,13 @@ message RemoveManagementPermissionRequest {
   string permission = 2;
 }
 
-message TemporaryAuthtoken {
-  string key = 1;
+message Cookie {
+  string name = 1;
   string value = 2;
-  string destination = 3;
+  string domain = 3;
+  string expires = 4;
+  string secure = 5;
+  string http_only = 6;
 }
 
 message CreateUserAccountRequest {
@@ -141,5 +144,5 @@ message CreateUserAccountRequest {
 
 message CreateUserAccountResponse {
   string identity_id = 1;
-  TemporaryAuthtoken temporary_token = 2;
+  Cookie temporary_token = 2;
 }
