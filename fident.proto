@@ -132,9 +132,9 @@ message Cookie {
   string name = 1;
   string value = 2;
   string domain = 3;
-  string expires = 4;
-  string secure = 5;
-  string http_only = 6;
+  int64 expires_epoch = 4;
+  bool secure = 5;
+  bool http_only = 6;
 }
 
 message CreateUserAccountRequest {
