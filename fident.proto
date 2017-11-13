@@ -10,6 +10,7 @@ service Auth {
   // Account generation / management
   rpc GetNewAuthenticationKey(AuthKeyRequest) returns (AuthKeyResponse) {};
   rpc CreateServiceAccount(ServiceRegistrationRequest) returns (ServiceRegistrationResponse) {};
+  rpc CreateUserAccount(CreateUserAccountRequest) returns (CreateUserAccountResponse) {};
 
   // Identity queries
   rpc GetLastLoginTimestamps(LoginTimestampRequest) returns (LoginTimestampResponse) {};
@@ -125,4 +126,20 @@ message RemoveManagementPermissionReponse {}
 message RemoveManagementPermissionRequest {
   repeated string identity_id = 1;
   string permission = 2;
+}
+
+message TemporaryAuthtoken {
+  string key = 1;
+  string value = 2;
+  string destination = 3;
+}
+
+message CreateUserAccountRequest {
+  string email_address = 1;
+  bool   issue_temporary_token = 2;
+}
+
+message CreateUserAccountResponse {
+  string identity_id = 1;
+  TemporaryAuthtoken temporary_token = 2;
 }
