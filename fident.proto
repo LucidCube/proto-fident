@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package fident;
+package fidentproto;
 
 service Auth {
   // Pre-authentication methods
