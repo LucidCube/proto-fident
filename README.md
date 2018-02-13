@@ -1,2 +1,2 @@
 # proto
-Fident protocol buffer definition files
+Protocol buffer definition files for the Fident API
